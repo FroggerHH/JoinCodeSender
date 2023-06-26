@@ -5,14 +5,15 @@ using HarmonyLib;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using static JoinCodeSender.Plugin;
+using Random = UnityEngine.Random;
 
 namespace JoinCodeSender
 {
     [HarmonyPatch]
     internal class ZNetSceneStartPatch
     {
-        [HarmonyPatch(typeof(ZNetScene), nameof(ZNetScene.Awake)), HarmonyPostfix]
-        static void ZNetSceneAwakePatch()
+        [HarmonyPatch(typeof(JoinCode), nameof(JoinCode.Init)), HarmonyPostfix]
+        static void JoinCodeAwakePatch()
         {
             if (SceneManager.GetActiveScene().name != "main") return;
 
@@ -20,6 +21,15 @@ namespace JoinCodeSender
             //     new Action<long, string>(Discord.RPC_SendWebhook));
             // ZRoutedRpc.instance.Register(nameof(Discord.RecuestWebhook),
             //     new Action<long>(Discord.RPC_RecuestWebhook));
+
+            var code = JoinCode.m_instance.m_joinCode;
+            string message;
+            int random = Random.Range(0, _self.messagesList.Count);
+            if (random <= _self.messagesList.Count) message = _self.messagesList[random];
+            else message = _self.messagesList[random - 1];
+            message = message.Replace("#JoinCode", code);
+
+            Discord.SendMessage("Bot", message);
         }
 
         // [HarmonyPatch(typeof(Game), nameof(Game.SpawnPlayer)), HarmonyPostfix]

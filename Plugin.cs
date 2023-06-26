@@ -2,10 +2,10 @@
 using BepInEx.Configuration;
 using DiscordWebhook;
 using HarmonyLib;
-using ServerSync;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace JoinCodeSender;
@@ -28,32 +28,15 @@ internal class Plugin : BaseUnityPlugin
     static string ConfigFileName = "com.Frogger.JoinCodeSender.cfg";
     DateTime LastConfigChange;
 
-    public static readonly ConfigSync configSync = new(ModName)
-        { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = ModVersion };
-
-    private static ConfigEntry<Toggle> serverConfigLocked = null!;
-
-    public static ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description,
-        bool synchronizedSetting = true)
+    public static ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description)
     {
         ConfigEntry<T> configEntry = _self.Config.Bind(group, name, value, description);
-
-        SyncedConfigEntry<T> syncedConfigEntry = configSync.AddConfigEntry(configEntry);
-        syncedConfigEntry.SynchronizedConfig = synchronizedSetting;
-
         return configEntry;
     }
 
-    private ConfigEntry<T> config<T>(string group, string name, T value, string description,
-        bool synchronizedSetting = true)
+    private ConfigEntry<T> config<T>(string group, string name, T value, string description)
     {
-        return config(group, name, value, new ConfigDescription(description), synchronizedSetting);
-    }
-
-    void SetCfgValue<T>(Action<T> setter, ConfigEntry<T> config)
-    {
-        setter(config.Value);
-        config.SettingChanged += (_, _) => setter(config.Value);
+        return config(group, name, value, new ConfigDescription(description));
     }
 
     public enum Toggle
@@ -67,9 +50,10 @@ internal class Plugin : BaseUnityPlugin
     #region configs
 
     internal static ConfigEntry<string> urlConfig;
+    internal static ConfigEntry<string> messageConfig;
 
     #endregion
-    
+
     #endregion
 
     #region Config
@@ -103,6 +87,15 @@ internal class Plugin : BaseUnityPlugin
 
     private void UpdateConfiguration()
     {
+        Task.Run(() =>
+        {
+            messagesList = new();
+            string messegesListString = messageConfig.Value;
+            string[] messeges = messegesListString.Split('|');
+            foreach (string msg in messeges) messagesList.Add(msg);
+        });
+
+        Task.WaitAll();
         Debug("Configuration Received");
     }
 
@@ -137,6 +130,10 @@ internal class Plugin : BaseUnityPlugin
 
     #endregion
 
+    public List<string> messagesList = new()
+        { "Hey, server is online! Join code is: #JoinCode", "Join code: #JoinCode", "Join us by code #JoinCode" };
+
+
     private void Awake()
     {
         _self = this;
@@ -145,13 +142,9 @@ internal class Plugin : BaseUnityPlugin
 
         Config.SaveOnConfigSet = false;
 
-        configSync.AddLockingConfigEntry(config("Main", "Lock Configuration", Toggle.On,
-            "If on, the configuration is locked and can be changed by server admins only."));
-
-        urlConfig = config("Urls", "url", "",
-            new ConfigDescription("Url of the moderator's webhook", null,
-                new ConfigurationManagerAttributes
-                    { HideSettingName = true, HideDefaultButton = true, Browsable = false }), false);
+        urlConfig = config("Main", "url", "", "");
+        messageConfig = config("Main", "Messages",
+            "Hey, server is online! Join code is: #JoinCode | Join code: #JoinCode | Join us by code #JoinCode", "");
 
         Config.SaveOnConfigSet = true;
 

@@ -31,6 +31,10 @@ public static class Discord
             .SendMessageAsync(url);
     }
 
+    internal static void SendMessage(string username, string content)
+    {
+        SendMessage(new(username, content));
+    }
     // internal static void SendWebhook()
     // {
     //     if (ZRoutedRpc.instance == null) return;
