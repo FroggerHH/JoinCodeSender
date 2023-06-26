@@ -6,6 +6,28 @@
   <component name="ChangeListManager">
     <list default="true" id="de3d48be-cb70-4454-a133-299baa08b3c2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JoinCodeSender/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JoinCodeSender/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Build/JoinCodeSender.dll" beforeDir="false" afterPath="$PROJECT_DIR$/Build/JoinCodeSender.dll" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Discord.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Discord.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ILRepack.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/JoinCodeSender.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/JoinCodeSender.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/AutoPickupPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/BeehivePatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/ChairPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/ContainerPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/CraftingStationPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/DoorPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/FireplacePatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/ItemDropPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/ItemStandPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/MapTablePatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/Patch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Patch/Patch.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/PickableObjectPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/SignPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/TeleportPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/WardPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/WearNTearPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Patch/ZNetSceneStartPatch.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/packages.config" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +104,7 @@
       <option name="presentableId" value="Default" />
       <updated>1687780285698</updated>
       <workItem from="1687780287051" duration="864000" />
-      <workItem from="1687781162563" duration="2321000" />
+      <workItem from="1687781162563" duration="3233000" />
     </task>
     <servers />
   </component>

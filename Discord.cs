@@ -25,7 +25,7 @@ public static class Discord
             .SetUsername(data.username)
             .SetContent(data.content)
             .SetAvatar(
-                "https://gcdn.thunderstore.io/live/repository/icons/Frogger-JoinCodeSender-0.0.17.png.128x128_q95.png")
+                "https://github.com/FroggerHH/JoinCodeSender/blob/main/icon.png?raw=true")
             //.AddEmbed()
             //.SetTimestamp(DateTime.Now).Build()
             .SendMessageAsync(url);
@@ -35,6 +35,7 @@ public static class Discord
     {
         SendMessage(new(username, content));
     }
+    
     // internal static void SendWebhook()
     // {
     //     if (ZRoutedRpc.instance == null) return;

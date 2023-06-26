@@ -80,14 +80,13 @@
         <Compile Include="DiscordMessenger\Thumbnail.cs" />
         <Compile Include="DiscordMessenger\Video.cs" />
         <Compile Include="Helper.cs" />
-        <Compile Include="Patch\ZNetSceneStartPatch.cs" />
+        <Compile Include="Patch\Patch.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="test.cs" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="Build\JoinCodeSender.dll" />
       <Content Include="icon.png" />
-      <Content Include="ILRepack.targets" />
       <Content Include="README.md" />
     </ItemGroup>
     <ItemGroup>
@@ -99,13 +98,6 @@
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="D:\Steam\steamapps\common\Valheim\BepInEx\plugins" />
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="D:\Steam\steamapps\common\Valheim dedicated server\BepInEx\plugins" />
         <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="D:\Slava\Coding\JoinCodeSender\Build" />
-    </Target>
-    <Import Project="packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets" Condition="Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" />
-    <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-      <PropertyGroup>
-        <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
-      </PropertyGroup>
-      <Error Condition="!Exists('packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\ILRepack.Lib.MSBuild.Task.2.0.18.2\build\ILRepack.Lib.MSBuild.Task.targets'))" />
     </Target>
 
 </Project>
