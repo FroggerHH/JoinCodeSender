@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Collections.Generic;
 using System.Net;
 using HarmonyLib;
 using YamlDotNet.Serialization;
@@ -15,13 +14,12 @@ public class DiscordMessage
 {
     [YamlMember(Alias = "username")] public string Username { get; set; }
 
-    [YamlMember(Alias = "avatar_url", ApplyNamingConventions = false)] public string AvatarUrl { get; set; }
+    [YamlMember(Alias = "avatar_url", ApplyNamingConventions = false)]
+    public string AvatarUrl { get; set; }
 
     [YamlMember(Alias = "content")] public string Content { get; set; }
 
     [YamlMember(Alias = "tts")] public bool TTS { get; set; }
-
-    [YamlMember(Alias = "embeds")] public List<Embed> Embeds { get; set; } = new List<Embed>();
 
     public DiscordMessage SetUsername(string username)
     {
@@ -47,13 +45,6 @@ public class DiscordMessage
         return this;
     }
 
-    public Embed AddEmbed()
-    {
-        var embed = new Embed(this);
-        Embeds.Add(embed);
-        return embed;
-    }
-
     public void SendMessage(string url)
     {
         var webClient = new WebClient();
@@ -67,10 +58,9 @@ public class DiscordMessage
         var serializerJson = new SerializerBuilder().JsonCompatible().Build();
         if (yamlObject != null)
         {
-            string json = serializerJson.Serialize(yamlObject);
+            var json = serializerJson.Serialize(yamlObject);
             webClient.UploadString(url, serializerJson.Serialize(json));
-        }
-        else
+        } else
         {
             throw new Exception("Failed to serialize yaml object");
         }
@@ -88,10 +78,9 @@ public class DiscordMessage
         var serializerJson = new SerializerBuilder().JsonCompatible().Build();
         if (yamlObject != null)
         {
-            string json = serializerJson.Serialize(yamlObject);
+            var json = serializerJson.Serialize(yamlObject);
             PostToDiscord(json, url);
-        }
-        else
+        } else
         {
             DebugError("Failed to serialize yaml object", true);
         }
@@ -99,12 +88,9 @@ public class DiscordMessage
 
     public static void PostToDiscord(string content, string url)
     {
-        if (content == "" || url == "")
-        {
-            return;
-        }
+        if (content == "" || url == "") return;
 
-        WebRequest discordAPI = WebRequest.Create(url);
+        var discordAPI = WebRequest.Create(url);
         discordAPI.Method = "POST";
         discordAPI.ContentType = "application/json";
 

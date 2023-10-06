@@ -1,21 +1,48 @@
-﻿using BepInEx;
-using BepInEx.Configuration;
-using DiscordWebhook;
-using HarmonyLib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
-using UnityEngine;
+using BepInEx;
+using BepInEx.Configuration;
+using HarmonyLib;
 
 namespace JoinCodeSender;
 
 [BepInPlugin(ModGUID, ModName, ModVersion)]
 internal class Plugin : BaseUnityPlugin
 {
+    public List<string> messagesList = new()
+        { "Hey, server is online! Join code is: #JoinCode", "Join code: #JoinCode", "Join us by code #JoinCode" };
+
+
+    private void Awake()
+    {
+        _self = this;
+
+        #region config
+
+        Config.SaveOnConfigSet = false;
+
+        urlConfig = config("Main", "url", "", "");
+        messageConfig = config("Main", "Messages",
+            "Hey, server is online! Join code is: #JoinCode | Join code: #JoinCode | Join us by code #JoinCode", "");
+
+        Config.SaveOnConfigSet = true;
+
+        #endregion
+
+        SetupWatcher();
+        Config.SettingChanged += (_, _) => { UpdateConfiguration(); };
+        Config.ConfigReloaded += (_, _) => { UpdateConfiguration(); };
+
+        Config.Save();
+
+        harmony.PatchAll();
+    }
+
     #region values
 
-    internal const string ModName = "JoinCodeSender", ModVersion = "1.1.0", ModGUID = "com.Frogger." + ModName;
+    internal const string ModName = "JoinCodeSender", ModVersion = "1.2.0", ModGUID = "com.Frogger." + ModName;
     internal static Harmony harmony = new(ModGUID);
     internal static Plugin _self;
 
@@ -25,12 +52,12 @@ internal class Plugin : BaseUnityPlugin
 
     #region tools
 
-    static string ConfigFileName = "com.Frogger.JoinCodeSender.cfg";
-    DateTime LastConfigChange;
+    private static readonly string ConfigFileName = "com.Frogger.JoinCodeSender.cfg";
+    private DateTime LastConfigChange;
 
     public static ConfigEntry<T> config<T>(string group, string name, T value, ConfigDescription description)
     {
-        ConfigEntry<T> configEntry = _self.Config.Bind(group, name, value, description);
+        var configEntry = _self.Config.Bind(group, name, value, description);
         return configEntry;
     }
 
@@ -67,12 +94,9 @@ internal class Plugin : BaseUnityPlugin
         fileSystemWatcher.EnableRaisingEvents = true;
     }
 
-    void ConfigChanged(object sender, FileSystemEventArgs e)
+    private void ConfigChanged(object sender, FileSystemEventArgs e)
     {
-        if ((DateTime.Now - LastConfigChange).TotalSeconds <= 3.0)
-        {
-            return;
-        }
+        if ((DateTime.Now - LastConfigChange).TotalSeconds <= 3.0) return;
 
         LastConfigChange = DateTime.Now;
         try
@@ -89,10 +113,10 @@ internal class Plugin : BaseUnityPlugin
     {
         Task.Run(() =>
         {
-            messagesList = new();
-            string messegesListString = messageConfig.Value;
-            string[] messeges = messegesListString.Split('|');
-            foreach (string msg in messeges) messagesList.Add(msg);
+            messagesList = new List<string>();
+            var messegesListString = messageConfig.Value;
+            var messeges = messegesListString.Split('|');
+            foreach (var msg in messeges) messagesList.Add(msg);
         });
 
         Task.WaitAll();
@@ -103,59 +127,21 @@ internal class Plugin : BaseUnityPlugin
 
     #region tools
 
-    public static void Debug(object msg)
-    {
-        _self.Logger.LogInfo(msg);
-    }
+    public static void Debug(object msg) { _self.Logger.LogInfo(msg); }
 
     public static void DebugError(object msg, bool showWriteToDev)
     {
-        if (showWriteToDev)
-        {
-            msg += "Write to the developer and moderator if this happens often.";
-        }
+        if (showWriteToDev) msg += "Write to the developer and moderator if this happens often.";
 
         _self.Logger.LogError(msg);
     }
 
     public static void DebugWarning(string msg, bool showWriteToDev)
     {
-        if (showWriteToDev)
-        {
-            msg += "Write to the developer and moderator if this happens often.";
-        }
+        if (showWriteToDev) msg += "Write to the developer and moderator if this happens often.";
 
         _self.Logger.LogWarning(msg);
     }
 
     #endregion
-
-    public List<string> messagesList = new()
-        { "Hey, server is online! Join code is: #JoinCode", "Join code: #JoinCode", "Join us by code #JoinCode" };
-
-
-    private void Awake()
-    {
-        _self = this;
-
-        #region config
-
-        Config.SaveOnConfigSet = false;
-
-        urlConfig = config("Main", "url", "", "");
-        messageConfig = config("Main", "Messages",
-            "Hey, server is online! Join code is: #JoinCode | Join code: #JoinCode | Join us by code #JoinCode", "");
-
-        Config.SaveOnConfigSet = true;
-
-        #endregion
-
-        SetupWatcher();
-        Config.SettingChanged += (_, _) => { UpdateConfiguration(); };
-        Config.ConfigReloaded += (_, _) => { UpdateConfiguration(); };
-
-        Config.Save();
-
-        harmony.PatchAll();
-    }
 }
