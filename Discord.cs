@@ -14,10 +14,8 @@ public static class Discord
             return;
         }
 
-        message = Localization.instance != null ? Localization.instance.Localize(message) : message;
-
         new DiscordMessage()
-            .SetUsername("JoinCodeSender")
+            .SetUsername(ModName) 
             .SetContent(message)
             .SetAvatar(
                 "https://gcdn.thunderstore.io/live/repository/icons/Frogger-JoinCodeSender-1.1.0.png.128x128_q95.png")

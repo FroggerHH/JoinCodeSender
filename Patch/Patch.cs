@@ -9,16 +9,11 @@ namespace JoinCodeSender;
 [HarmonyPatch]
 internal class Patch
 {
-    private static bool done = false;
-
-    [HarmonyPatch(typeof(JoinCode), nameof(JoinCode.Init))] [HarmonyPostfix] [HarmonyWrapSafe]
+    [HarmonyPatch(typeof(ZPlayFabMatchmaking), nameof(ZPlayFabMatchmaking.GenerateJoinCode))] [HarmonyPostfix]
+    [HarmonyWrapSafe]
     private static void Send()
     {
-        if (done) return;
-        done = true;
-        if (SceneManager.GetActiveScene().name != "main") return;
-
-        var code = JoinCode.m_instance.m_joinCode;
+        var code = ZPlayFabMatchmaking.JoinCode;
         string message;
         var random = Random.Range(0, _self.messagesList.Count);
         if (random <= _self.messagesList.Count) message = _self.messagesList[random];

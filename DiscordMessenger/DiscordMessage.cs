@@ -86,18 +86,15 @@ public class DiscordMessage
         }
     }
 
-    public static void PostToDiscord(string content, string url)
+    public static async void PostToDiscord(string content, string url)
     {
         if (content == "" || url == "") return;
 
         var discordAPI = WebRequest.Create(url);
         discordAPI.Method = "POST";
         discordAPI.ContentType = "application/json";
-
-        discordAPI.GetRequestStreamAsync().ContinueWith(t =>
-        {
-            using StreamWriter writer = new(t.Result);
-            writer.WriteAsync(content).ContinueWith(_ => discordAPI.GetResponseAsync());
-        });
+        discordAPI.ContentLength = content.Length;
+        var stream = await discordAPI.GetRequestStreamAsync();
+        using (var streamWriter = new StreamWriter(stream)) streamWriter.Write(content);
     }
 }

@@ -42,7 +42,7 @@ internal class Plugin : BaseUnityPlugin
 
     #region values
 
-    internal const string ModName = "JoinCodeSender", ModVersion = "1.2.0", ModGUID = "com.Frogger." + ModName;
+    internal const string ModName = "JoinCodeSender", ModVersion = "1.3.0", ModGUID = "com.Frogger." + ModName;
     internal static Harmony harmony = new(ModGUID);
     internal static Plugin _self;
 
@@ -127,21 +127,11 @@ internal class Plugin : BaseUnityPlugin
 
     #region tools
 
-    public static void Debug(object msg) { _self.Logger.LogInfo(msg); }
+    public static void Debug(object msg) => _self.Logger.LogInfo(msg);
 
-    public static void DebugError(object msg, bool showWriteToDev)
-    {
-        if (showWriteToDev) msg += "Write to the developer and moderator if this happens often.";
+    public static void DebugError(object msg, bool showWriteToDev) => _self.Logger.LogError(msg);
 
-        _self.Logger.LogError(msg);
-    }
-
-    public static void DebugWarning(string msg, bool showWriteToDev)
-    {
-        if (showWriteToDev) msg += "Write to the developer and moderator if this happens often.";
-
-        _self.Logger.LogWarning(msg);
-    }
+    public static void DebugWarning(string msg) => _self.Logger.LogWarning(msg);
 
     #endregion
 }

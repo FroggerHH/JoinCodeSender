@@ -6,25 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="de3d48be-cb70-4454-a133-299baa08b3c2" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.JoinCodeSender/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.JoinCodeSender/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/App.config" beforeDir="false" afterPath="$PROJECT_DIR$/App.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Build/JoinCodeSender.dll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/ConfigurationManagerAttributes.cs" beforeDir="false" afterPath="$PROJECT_DIR$/ConfigurationManagerAttributes.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Discord.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Discord.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordMessenger/Author.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/DiscordMessenger/DiscordMessage.cs" beforeDir="false" afterPath="$PROJECT_DIR$/DiscordMessenger/DiscordMessage.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordMessenger/Embed.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordMessenger/Field.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordMessenger/Footer.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordMessenger/Image.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordMessenger/Provider.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordMessenger/Thumbnail.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DiscordMessenger/Video.cs" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Helper.cs" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/JoinCodeSender.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/JoinCodeSender.csproj" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Patch/Patch.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Patch/Patch.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Plugin.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Plugin.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/packages.config" beforeDir="false" afterPath="$PROJECT_DIR$/packages.config" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test.cs" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,6 +24,12 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2d6095bac9c24f158c7a3c3382b14c26198a00/23/05160a62/ZPlayFabLobbySearch.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2d6095bac9c24f158c7a3c3382b14c26198a00/63/2a8da477/ServerList.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2d6095bac9c24f158c7a3c3382b14c26198a00/6c/d947bdf5/Game.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2d6095bac9c24f158c7a3c3382b14c26198a00/a7/40cbd8e9/JoinCode.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2d6095bac9c24f158c7a3c3382b14c26198a00/b3/834ed719/Menu.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/2d6095bac9c24f158c7a3c3382b14c26198a00/fe/1e5b1dbe/ZPlayFabMatchmaking.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/447b19510f604ca3807cd6cce3a7c1ef18b200/61/583c1b8b/JoinCode.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/447b19510f604ca3807cd6cce3a7c1ef18b200/be/e89261b7/Game.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/973ed15cfa804d18bc69d3f0cd88c32d180e00/47/f0b7374e/ZNet.cs" root0="SKIP_HIGHLIGHTING" />
@@ -112,6 +104,7 @@
       <workItem from="1693406932829" duration="527000" />
       <workItem from="1693463021817" duration="1836000" />
       <workItem from="1696586417508" duration="101000" />
+      <workItem from="1701754859101" duration="3863000" />
     </task>
     <servers />
   </component>
